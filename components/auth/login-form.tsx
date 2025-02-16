@@ -52,7 +52,7 @@ export const LoginForm = () => {
     <CardWrapper
       headerLabel="Log in to your account"
       title="Login"
-      backButtonHref="/register"
+      backButtonHref="/auth/register"
       backButtonLabel="Don't have an account? Register here"
       showSocial
     >
@@ -70,6 +70,7 @@ export const LoginForm = () => {
                       {...field}
                       placeholder="johndoe@email.com"
                       type="email"
+                      autoComplete="off"
                     />
                   </FormControl>
                   <FormMessage />
@@ -83,7 +84,12 @@ export const LoginForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="******" type="password" />
+                    <Input
+                      {...field}
+                      placeholder="******"
+                      type="password"
+                      autoComplete="off"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

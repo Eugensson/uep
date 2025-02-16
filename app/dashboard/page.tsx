@@ -1,11 +1,10 @@
 import { auth } from "@/auth";
+import { LogoutButton } from "@/components/auth/logout-button";
 
 const DashboardPage = async () => {
   const session = await auth();
 
-  console.log(session);
-
-  return <div>Dashboard</div>;
+  return <div>{session?.user && <LogoutButton />}</div>;
 };
 
 export default DashboardPage;

@@ -59,7 +59,7 @@ export const RegisterForm = () => {
     <CardWrapper
       headerLabel="Create an account"
       title="Register"
-      backButtonHref="/login"
+      backButtonHref="/auth/login"
       backButtonLabel="Already have an account?"
       showSocial
     >
@@ -77,6 +77,7 @@ export const RegisterForm = () => {
                       {...field}
                       placeholder="johndoe@email.com"
                       type="email"
+                      autoComplete="off"
                     />
                   </FormControl>
                   <FormMessage />
@@ -90,7 +91,11 @@ export const RegisterForm = () => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="John Doe" />
+                    <Input
+                      {...field}
+                      placeholder="John Doe"
+                      autoComplete="off"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -103,7 +108,12 @@ export const RegisterForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="******" type="password" />
+                    <Input
+                      {...field}
+                      placeholder="******"
+                      type="password"
+                      autoComplete="off"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -116,7 +126,12 @@ export const RegisterForm = () => {
                 <FormItem>
                   <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="******" type="password" />
+                    <Input
+                      {...field}
+                      placeholder="******"
+                      type="password"
+                      autoComplete="off"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
