@@ -1,7 +1,8 @@
 "use server";
 
 import * as z from "zod";
-import bcrypt from "bcryptjs";
+// import bcrypt from "bcryptjs";
+import { genSaltSync, hashSync } from "bcrypt-edge";
 
 import { prisma } from "@/prisma/prisma";
 
@@ -21,7 +22,10 @@ export const register = async (data: z.infer<typeof RegisterSchema>) => {
       return { error: "Passwords do not match" };
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // const hashedPassword = await bcrypt.hash(password, 10);
+
+    const salt = genSaltSync(10);
+    const hashedPassword = hashSync(password, salt);
 
     const userExists = await prisma.user.findFirst({
       where: {
