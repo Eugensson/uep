@@ -1,4 +1,3 @@
-// import bcrypt from "bcryptjs";
 import { compareSync } from "bcrypt-edge";
 
 import type { NextAuthConfig } from "next-auth";
@@ -30,8 +29,6 @@ export default {
         });
 
         if (!user || !user.password || !user.email) return null;
-
-        // const passwordMatch = await bcrypt.compare(password, user.password);
 
         const passwordMatch = compareSync(password, user.password);
 

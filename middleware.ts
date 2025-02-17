@@ -7,7 +7,7 @@ import { privateRoutes } from "@/routes";
 
 const { auth } = NextAuth(authConfig);
 
-const BASE_URL = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
+const BASE_URL = process.env.NEXT_PUBLIC_URL;
 
 export default auth(async (req) => {
   const isLoggedIn = !!req.auth;

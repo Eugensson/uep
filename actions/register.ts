@@ -1,12 +1,14 @@
 "use server";
 
 import * as z from "zod";
-// import bcrypt from "bcryptjs";
 import { genSaltSync, hashSync } from "bcrypt-edge";
 
 import { prisma } from "@/prisma/prisma";
 
 import { RegisterSchema } from "@/schemas";
+
+import { sendVerificationEmail } from "@/lib/mail";
+import { generateVerificationToken } from "@/lib/tokens";
 
 export const register = async (data: z.infer<typeof RegisterSchema>) => {
   try {
@@ -21,8 +23,6 @@ export const register = async (data: z.infer<typeof RegisterSchema>) => {
     if (password !== passwordConfirmation) {
       return { error: "Passwords do not match" };
     }
-
-    // const hashedPassword = await bcrypt.hash(password, 10);
 
     const salt = genSaltSync(10);
     const hashedPassword = hashSync(password, salt);
@@ -47,7 +47,14 @@ export const register = async (data: z.infer<typeof RegisterSchema>) => {
       },
     });
 
-    return { success: "User created successfully" };
+    const verificationToken = await generateVerificationToken(email);
+
+    await sendVerificationEmail(
+      verificationToken.email,
+      verificationToken.token
+    );
+
+    return { success: "Confirmation email sent!" };
   } catch (error) {
     console.error("Database error:", error);
 

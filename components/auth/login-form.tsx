@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/auth/form-error";
+import { BackButton } from "@/components/auth/back-button";
 import { CardWrapper } from "@/components/auth/card-wrapper";
 import { GoogleLogin } from "@/components/auth/google-login";
 
@@ -96,6 +97,11 @@ export const LoginForm = () => {
               )}
             />
           </div>
+          <BackButton
+            label="Forgot password?"
+            href="/auth/reset"
+            className="w-fit m-0 p-0"
+          />
           <FormError message={error} />
           <Button type="submit" className="w-full" disabled={loading}>
             {loading ? "Loading..." : "Login"}
